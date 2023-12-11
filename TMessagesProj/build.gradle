@@ -5,6 +5,12 @@ apply plugin: 'com.android.library'
 repositories {
     mavenCentral()
     google()
+    maven {
+        url 'https://www.jitpack.io'
+        content {
+            includeModule 'com.github.UnifiedPush', 'android-connector'
+        }
+    }
 }
 
 configurations {
@@ -41,6 +47,7 @@ dependencies {
             because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
         }
     }
+    implementation 'com.github.UnifiedPush:android-connector:2.3.1'
     implementation 'org.osmdroid:osmdroid-android:6.1.14'
 
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
@@ -84,8 +91,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
 
         coreLibraryDesugaringEnabled true
     }
