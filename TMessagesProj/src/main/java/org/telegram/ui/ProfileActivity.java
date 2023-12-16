@@ -3976,7 +3976,16 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                                 BuildVars.DEBUG_PRIVATE_VERSION ? (SharedConfig.botTabs3DEffect ? "disable tabs 3d effect" : "enable tabs 3d effect") : null
                         };
 
-                        builder.setItems(items, (dialog, which) -> {
+                        CharSequence[] mgItems;
+                        mgItems = new CharSequence[]{
+                                !SharedConfig.messageDetailsMenu ? "Enable Message Details menu" : "Disable Message Details menu",
+                        };
+
+                        CharSequence[] joinedItems = new CharSequence[items.length + mgItems.length];
+                        System.arraycopy(items, 0, joinedItems, 0, items.length);
+                        System.arraycopy(mgItems, 0, joinedItems, items.length, mgItems.length);
+
+                        builder.setItems(joinedItems, (dialog, which) -> {
                             if (which == 0) {
                                 getUserConfig().syncContacts = true;
                                 getUserConfig().saveConfig(false);
@@ -4236,6 +4245,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                                 SharedConfig.toggleUseNewBlur();
                             } else if (which == 31) {
                                 SharedConfig.setBotTabs3DEffect(!SharedConfig.botTabs3DEffect);
+                            }
+
+                            // MGRAM
+                            else if (which == items.length + 0) {
+                                SharedConfig.toggleMessageDetailsMenu();
                             }
                         });
                         builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
