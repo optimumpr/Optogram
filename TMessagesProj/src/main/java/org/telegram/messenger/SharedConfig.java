@@ -152,6 +152,14 @@ public class SharedConfig {
                 .apply();
     }
 
+    public static void toggleDisableUnifiedPush() {
+        disableUnifiedPush = !disableUnifiedPush;
+        ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE)
+                .edit()
+                .putBoolean("disableUnifiedPush", disableUnifiedPush)
+                .commit();
+    }
+
     public static void toggleSurfaceInStories() {
         useSurfaceInStories = !useSurfaceInStories;
         ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE)
@@ -269,6 +277,7 @@ public class SharedConfig {
     public static boolean photoViewerBlur = true;
     public static boolean payByInvoice;
     public static boolean messageDetailsMenu;
+    public static boolean disableUnifiedPush;
     public static int stealthModeSendMessageConfirm = 2;
     private static int lastLocalId = -210000;
 
@@ -664,6 +673,7 @@ public class SharedConfig {
             callEncryptionHintDisplayedCount = preferences.getInt("callEncryptionHintDisplayedCount", 0);
             botTabs3DEffect = preferences.getBoolean("botTabs3DEffect", true);
             messageDetailsMenu = preferences.getBoolean("messageDetailsMenu", false);
+            disableUnifiedPush = preferences.getBoolean("disableUnifiedPush", false);
 
             loadDebugConfig(preferences);
 
