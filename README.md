@@ -24,6 +24,7 @@ This is an unofficial fork of the [FOSS-friendly fork](https://github.com/Telegr
 - Add toggle setting in Debug Menu to enable Message Details menu
 - Add toggle setting in Debug Menu to disable Unified Push support
 - Add toggle setting in Debug Menu to disable Secure Flags. This option must **only** be used for debugging.
+- Re-add Monet themes ([#31](https://github.com/Mercurygram/Mercurygram/pull/31)).
 - Disabled DOH resolving since this leaks your used proxy to Google and it's not needed since Android DNS over TLS should be used instead.
 - Unlock premium app icons for anybody
 - Add toggle setting in Chat Settings to send large photos (2560px instead of 1280px)
