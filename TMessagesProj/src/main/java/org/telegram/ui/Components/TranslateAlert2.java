@@ -503,9 +503,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
             textView.setTextIsSelectable(!noforwards);
         }
         if (noforwards) {
-            if (!SharedConfig.disableSecureFlags) {
-                getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
-            }
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
         } else {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
         }

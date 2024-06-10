@@ -168,14 +168,6 @@ public class SharedConfig {
                 .commit();
     }
 
-    public static void toggleDisableSecureFlags() {
-        disableSecureFlags = !disableSecureFlags;
-        ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE)
-                .edit()
-                .putBoolean("disableSecureFlags", disableSecureFlags)
-                .commit();
-    }
-
     public static void toggleSurfaceInStories() {
         useSurfaceInStories = !useSurfaceInStories;
         ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE)
@@ -293,7 +285,6 @@ public class SharedConfig {
     public static String unifiedPushGateway;
     public static boolean messageDetailsMenu;
     public static boolean disableUnifiedPush;
-    public static boolean disableSecureFlags;
     public static int stealthModeSendMessageConfirm = 2;
     private static int lastLocalId = -210000;
 
@@ -687,7 +678,6 @@ public class SharedConfig {
             callEncryptionHintDisplayedCount = preferences.getInt("callEncryptionHintDisplayedCount", 0);
             messageDetailsMenu = preferences.getBoolean("messageDetailsMenu", false);
             disableUnifiedPush = preferences.getBoolean("disableUnifiedPush", false);
-            disableSecureFlags = preferences.getBoolean("disableSecureFlags", false);
             unifiedPushGateway = preferences.getString("unifiedPushGateway", "https://p2p.belloworld.it/");
 
             loadDebugConfig(preferences);
