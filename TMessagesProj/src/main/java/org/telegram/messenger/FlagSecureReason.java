@@ -65,9 +65,7 @@ public class FlagSecureReason {
         }
 
         if (isSecuredNow(window)) {
-            if (!SharedConfig.disableSecureFlags) {
-                window.addFlags(WindowManager.LayoutParams.FLAG_SECURE);
-            }
+            window.addFlags(WindowManager.LayoutParams.FLAG_SECURE);
         } else {
             window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
         }
