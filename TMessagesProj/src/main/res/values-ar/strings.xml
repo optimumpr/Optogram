@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="AppName">Mercurygram</string>
-    <string name="AppNameBeta">Mercurygram Beta</string>
+    <string name="AppName">Optogram</string>
+    <string name="AppNameBeta">Optogram Beta</string>
     <string name="LanguageName">العربية</string>
     <string name="English">الإنجليزية</string>
     <string name="LanguageNameInEnglish">Arabic</string>
