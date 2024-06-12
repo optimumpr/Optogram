@@ -854,10 +854,10 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
             if (position == unifiedPushDistributorRow) {
                 String txt;
                 if (UnifiedPushReceiver.getNumOfReceivedNotifications() == 0) {
-                    txt = "You never received notifications with UnifiedPush since Mercurygram was started.";
+                    txt = "No UnifiedPush notification has been recieved since Optogram was started.";
                 } else {
-                    txt = String.format("The last received notification with UnifiedPush was %d seconds ago.\n" +
-                                        "You received %d notifications since Mercurygram was started.",
+                    txt = String.format("The latest UnifiedPush notification was received %d seconds ago.\n" +
+                                        "You received %d notifications since Optogram was started.",
                                         (SystemClock.elapsedRealtime() - UnifiedPushReceiver.getLastReceivedNotification()) / 1000,
                                         UnifiedPushReceiver.getNumOfReceivedNotifications());
                 }

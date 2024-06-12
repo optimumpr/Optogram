@@ -1866,7 +1866,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                     view = frameLayout;
                     view.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                     RadialProgressView progressBar = new RadialProgressView(mContext);
-                    progressBar.setProgressColor(0xff527da3);
+                    progressBar.setProgressColor(0xff6b6b6b);
                     frameLayout.addView(progressBar, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.MATCH_PARENT));
                     break;
                 case 2:

@@ -347,7 +347,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         sizeNotifierFrameLayout.addView(progressView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.MATCH_PARENT, Gravity.LEFT | Gravity.TOP, 0, 0, 0, 48));
 
         RadialProgressView progressBar = new RadialProgressView(context);
-        progressBar.setProgressColor(0xff527da3);
+        progressBar.setProgressColor(0xff6b6b6b);
         progressView.addView(progressBar, LayoutHelper.createFrame(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, Gravity.CENTER));
 
         shadow = new View(context);
