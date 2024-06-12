@@ -41,7 +41,7 @@ public class ThemeColors {
         defaultColors[key_dialogCheckboxSquareDisabled] = 0xffb0b0b0;
         defaultColors[key_dialogRadioBackground] = 0xffb3b3b3;
         defaultColors[key_dialogRadioBackgroundChecked] = 0xff37a9f0;
-        defaultColors[key_dialogLineProgress] = 0xff527da3;
+        defaultColors[key_dialogLineProgress] = 0xff6b6b6b;
         defaultColors[key_dialogLineProgressBackground] = 0xffdbdbdb;
         defaultColors[key_dialogButton] = 0xff4991cc;
         defaultColors[key_dialogButtonSelector] = 0x0f000000;
@@ -172,7 +172,7 @@ public class ThemeColors {
         defaultColors[key_avatar_nameInMessageBlue] = 0xff368AD1;
         defaultColors[key_avatar_nameInMessagePink] = 0xffC7508B;
 
-        defaultColors[key_actionBarDefault] = 0xff527da3;
+        defaultColors[key_actionBarDefault] = 0xff6b6b6b;
         defaultColors[key_actionBarDefaultIcon] = 0xffffffff;
         defaultColors[key_actionBarActionModeDefault] = 0xffffffff;
         defaultColors[key_actionBarActionModeDefaultTop] = 0x10000000;
