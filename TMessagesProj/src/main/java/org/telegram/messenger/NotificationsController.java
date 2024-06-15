@@ -4293,7 +4293,7 @@ public class NotificationsController extends BaseController {
                     .setGroupSummary(true)
                     .setShowWhen(true)
                     .setWhen(((long) lastMessageObject.messageOwner.date) * 1000)
-                    .setColor(0xff11acfa);
+                    .setColor(0xff515151);
 
             long[] vibrationPattern = null;
             Uri sound = null;
@@ -5210,7 +5210,7 @@ public class NotificationsController extends BaseController {
                     .setContentText(text.toString())
                     .setAutoCancel(true)
                     .setNumber(dialogKey.story ? storyPushMessages.size() : messageObjects.size())
-                    .setColor(0xff11acfa)
+                    .setColor(0xff515151)
                     .setGroupSummary(false)
                     .setWhen(date)
                     .setShowWhen(true)

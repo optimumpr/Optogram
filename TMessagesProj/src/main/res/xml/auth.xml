@@ -4,5 +4,5 @@
     android:accountType="org.jaguar.optogram"
     android:icon="@drawable/ic_launcher_dr"
     android:smallIcon="@drawable/ic_launcher_dr"
-    android:label="Optogram"
+    android:label="@string/AppName"
     android:accountPreferences="@xml/auth_menu"/>
