@@ -1095,7 +1095,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             launchLayout.addView(rightActionBarLayout.getView());
 
             shadowTabletSide = new FrameLayout(this);
-            shadowTabletSide.setBackgroundColor(0x40295274);
+            shadowTabletSide.setBackgroundColor(0x406c6e6f);
             launchLayout.addView(shadowTabletSide);
 
             shadowTablet = new FrameLayout(this);

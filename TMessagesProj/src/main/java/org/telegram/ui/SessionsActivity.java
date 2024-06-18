@@ -979,7 +979,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             colors[2] = 0xffffff;
             colors[3] = Theme.getColor(Theme.key_windowBackgroundWhite);
 
-            colors[4] = 0x50a7ea;
+            colors[4] = 0x479adb;
             colors[5] = Theme.getColor(Theme.key_featuredStickers_addButton);
 
             colors[6] = 0x212020;

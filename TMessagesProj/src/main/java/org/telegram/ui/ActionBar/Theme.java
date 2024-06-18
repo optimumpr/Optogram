@@ -2634,7 +2634,7 @@ public class Theme {
                     themeAccent.myMessagesGradientAccentColor3 = 0xffa751a8;
                     if (name.equals("Night")) {
                         themeAccent.patternIntensity = -0.57f;
-                        themeAccent.backgroundOverrideColor = 0xff8e8e90;
+                        themeAccent.backgroundOverrideColor = 0xff6c7fa6;
                         themeAccent.backgroundGradientOverrideColor1 = 0xff2e344b;
                         themeAccent.backgroundGradientOverrideColor2 = 0xff7874a7;
                         themeAccent.backgroundGradientOverrideColor3 = 0xff333258;
