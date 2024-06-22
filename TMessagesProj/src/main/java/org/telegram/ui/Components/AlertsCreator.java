@@ -5916,7 +5916,6 @@ public class AlertsCreator {
             } else {
                 return LocaleController.formatTTLString(values[value]);
             }
-            return "";
         });
         builder.setView(numberPicker);
         builder.setNegativeButton(LocaleController.getString("Done", R.string.Done), (dialog, which) -> {

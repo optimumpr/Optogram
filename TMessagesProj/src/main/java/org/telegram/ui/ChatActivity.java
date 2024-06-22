@@ -1358,6 +1358,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private final static int bot_settings = 31;
     private final static int call = 32;
     private final static int video_call = 33;
+    private final static int goToFirstMessage = 34;
 
     private final static int attach_photo = 0;
     private final static int attach_gallery = 1;
@@ -3476,6 +3477,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     if (button != null) {
                         button.setTextColor(getThemedColor(Theme.key_text_RedBold));
                     }
+                } else if (id == goToFirstMessage) {
+                    // This is timestamp of launch date of the Telegram.
+                    // August 2013.
+                    jumpToDate(1375350800);
                 }
             }
         });
@@ -3752,6 +3757,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     }
                 });
                 muteItemGap = headerItem.lazilyAddColoredGap();
+                headerItem.addSubItem(goToFirstMessage, R.drawable.to_first, LocaleController.getString("GoToFirstMessage", R.string.GoToFirstMessage), themeDelegate);
             }
             if (currentUser != null && chatMode != MODE_SAVED) {
                 headerItem.lazilyAddSubItem(call, R.drawable.msg_callback, LocaleController.getString("Call", R.string.Call));
