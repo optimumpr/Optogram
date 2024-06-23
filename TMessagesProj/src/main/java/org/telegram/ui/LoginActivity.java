@@ -2404,7 +2404,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     }
                     CheckBoxCell cell = (CheckBoxCell) v;
                     syncContacts = false;
-                    cell.setChecked(syncContacts, true);
+                    cell.setChecked(syncContacts, false);
                     if (syncContacts) {
                         BulletinFactory.of(slideViewsContainer, null).createSimpleBulletin(R.raw.contacts_sync_on, getString("SyncContactsOn", R.string.SyncContactsOn)).show();
                     } else {

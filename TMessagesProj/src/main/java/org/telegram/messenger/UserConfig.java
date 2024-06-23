@@ -306,7 +306,7 @@ public class UserConfig extends BaseController {
             ratingLoadTime = preferences.getInt("ratingLoadTime", 0);
             botRatingLoadTime = preferences.getInt("botRatingLoadTime", 0);
             loginTime = preferences.getInt("loginTime", currentAccount);
-            syncContacts = preferences.getBoolean("syncContacts", true);
+            syncContacts = preferences.getBoolean("syncContacts", false);
             suggestContacts = preferences.getBoolean("suggestContacts", true);
             hasSecureData = preferences.getBoolean("hasSecureData", false);
             notificationsSettingsLoaded = preferences.getBoolean("notificationsSettingsLoaded4", false);
@@ -479,7 +479,7 @@ public class UserConfig extends BaseController {
         botRatingLoadTime = 0;
         draftsLoaded = false;
         contactsReimported = true;
-        syncContacts = true;
+        syncContacts = false;
         suggestContacts = true;
         unreadDialogsLoaded = true;
         hasValidDialogLoadIds = true;
