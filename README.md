@@ -1,5 +1,6 @@
 Optogram, a DeGoogled Telegram client for Android with Unified-Push and Black Interface
 =======================================================================================
+![Picture](images/icon_launcher.png)
 
 The application is for people who choose not to use Google services, including the Firebase Push, which is known 
 to expose metadata to various third parties. Without FCM/GCM push, most users must enable 'keep alive' and 
