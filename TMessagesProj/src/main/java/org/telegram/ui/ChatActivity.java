@@ -33037,6 +33037,58 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 if (cell != null) {
                     cell.resetPressedLink(-1);
                 }
+                builder.setTitle(formattedUrl);
+                builder.setTitleMultipleLines(true);
+                final MessageObject finalMessageObject = messageObject;
+                final String http = "http://";
+                final String https = "https://";
+                final String open = LocaleController.getString("Open", R.string.Open);
+                final String copy = LocaleController.getString("Copy", R.string.Copy);
+                final String copyW =
+                    LocaleController.getString("CopyWithoutProtocol", R.string.CopyWithoutProtocol);
+                final CharSequence[] items = noforwards
+                    ? new CharSequence[]{open}
+                    : (formattedUrl.startsWith(http) || formattedUrl.startsWith(https))
+                    ? new CharSequence[]{open, copy, copyW}
+                    : new CharSequence[]{open, copy};
+                builder.setItems(items, (dialog, which) -> {
+                    if (which == 0) {
+                        logSponsoredClicked(finalMessageObject);
+                        processExternalUrl(1, urlFinal, url, finalCell, false);
+                    } else if (which == 1) {
+                        String url1 = urlFinal;
+                        boolean tel = false;
+                        boolean mail = false;
+                        if (url1.startsWith("mailto:")) {
+                            url1 = url1.substring(7);
+                            mail = true;
+                        } else if (url1.startsWith("tel:")) {
+                            url1 = url1.substring(4);
+                            tel = true;
+                        }
+                        AndroidUtilities.addToClipboard(url1);
+                        createUndoView();
+                        if (undoView == null) {
+                            return;
+                        }
+                        if (mail) {
+                            undoView.showWithAction(0, UndoView.ACTION_EMAIL_COPIED, null);
+                        } else if (tel) {
+                            undoView.showWithAction(0, UndoView.ACTION_PHONE_COPIED, null);
+                        } else {
+                            undoView.showWithAction(0, UndoView.ACTION_LINK_COPIED, null);
+                        }
+                    } else if (which == 2) {
+                        AndroidUtilities.addToClipboard(
+                            urlFinal.replace(http, "").replace(https, ""));
+                    }
+                });
+                builder.setOnPreDismissListener(di -> {
+                    if (finalCell != null) {
+                        finalCell.resetPressedLink(-1);
+                    }
+                });
+                showDialog(builder.create());
             } else {
                 logSponsoredClicked(messageObject);
                 boolean forceAlert = url instanceof URLSpanReplacement;
