@@ -8876,4 +8876,5 @@
     <string name="NoLogFound">**No results found**</string>
     <string name="NoLogFoundFiltered">**No results matching your filters**</string>
     <string name="GoToFirstMessage">Go to First Message</string>
+    <string name="CopyWithoutProtocol">Copy without protocol</string>
 </resources>
