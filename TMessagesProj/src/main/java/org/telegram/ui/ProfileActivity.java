@@ -622,6 +622,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     private final ArrayList<Integer> visibleSortedUsers = new ArrayList<>();
     private int usersForceShowingIn = 0;
 
+    private int optoHeaderRow;
+    private int optoSectionCell;
+    private int optoRow;
+
     private boolean firstLayout = true;
     private boolean invalidateScroll = true;
     private boolean isQrItemVisible = true;
@@ -3866,6 +3870,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 presentFragment(new LiteModeSettingsActivity());
             } else if (position == devicesRow) {
                 presentFragment(new SessionsActivity(0));
+            } else if (position == optoRow) {
+                presentFragment(new OptoSettingsActivity());
             } else if (position == questionRow) {
                 showDialog(AlertsCreator.createSupportAlert(ProfileActivity.this, resourcesProvider));
             } else if (position == faqRow) {
@@ -8588,6 +8594,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         notificationsSimpleRow = -1;
         settingsRow = -1;
 
+        optoHeaderRow = optoRow = optoSectionCell = -1;
+
         unblockRow = -1;
         joinRow = -1;
         lastSectionRow = -1;
@@ -8663,6 +8671,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 devicesRow = rowCount++;
                 languageRow = rowCount++;
                 devicesSectionRow = rowCount++;
+                optoHeaderRow = rowCount++;
+                optoRow = rowCount++;
+                optoSectionCell = rowCount++;
                 if (!getMessagesController().premiumFeaturesBlocked()) {
                     premiumRow = rowCount++;
                 }
@@ -10898,6 +10909,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             switch (holder.getItemViewType()) {
                 case VIEW_TYPE_HEADER:
                     HeaderCell headerCell = (HeaderCell) holder.itemView;
+                    if (position == optoHeaderRow) {
+                        headerCell.setText(LocaleController.getString("AppName", R.string.AppName));
+                    }
                     if (position == infoHeaderRow) {
                         if (ChatObject.isChannel(currentChat) && !currentChat.megagroup && channelInfoRow != -1) {
                             headerCell.setText(LocaleController.getString("ReportChatDescription", R.string.ReportChatDescription));
@@ -11222,6 +11236,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         textCell.setTextAndIcon(LocaleController.getString("DataSettings", R.string.DataSettings), R.drawable.msg2_data, true);
                     } else if (position == chatRow) {
                         textCell.setTextAndIcon(LocaleController.getString("ChatSettings", R.string.ChatSettings), R.drawable.msg2_discussion, true);
+                    } else if (position == optoRow) {
+                        textCell.setTextAndIcon(LocaleController.getString("OptoSettingsTitle", R.string.OptoSettingsTitle), R.drawable.menu_opto, true);
                     } else if (position == filtersRow) {
                         textCell.setTextAndIcon(LocaleController.getString(R.string.Filters), R.drawable.msg2_folder, true);
                     } else if (position == stickersRow) {
@@ -11545,6 +11561,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         position == versionRow || position == dataRow || position == chatRow ||
                         position == questionRow || position == devicesRow || position == filtersRow || position == stickersRow ||
                         position == faqRow || position == policyRow || position == sendLogsRow || position == sendLastLogsRow ||
+                        position == optoRow ||
                         position == clearLogsRow || position == switchBackendRow || position == setAvatarRow ||
                         position == addToGroupButtonRow || position == premiumRow || position == premiumGiftingRow ||
                         position == businessRow || position == liteModeRow || position == birthdayRow || position == channelRow ||
@@ -11573,6 +11590,13 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
         @Override
         public int getItemViewType(int position) {
+            if (position == optoSectionCell) {
+                return 7;
+            } else if (position == optoHeaderRow) {
+                return 1;
+            } else if (position == optoRow) {
+                return 4;
+            }
             if (position == infoHeaderRow || position == membersHeaderRow || position == settingsSectionRow2 ||
                     position == numberSectionRow || position == helpHeaderRow || position == debugHeaderRow) {
                 return VIEW_TYPE_HEADER;
