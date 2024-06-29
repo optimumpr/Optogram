@@ -9079,5 +9079,5 @@
     <string name="AttachPaidMedia">⭐️ %s</string>
     <string name="GoToFirstMessage">Go to First Message</string>
     <string name="CopyWithoutProtocol">Copy without protocol</string>
-
+    <string name="DisableGlobalSearch">Disable Global Search</string>
 </resources>

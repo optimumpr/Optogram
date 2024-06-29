@@ -28,4 +28,5 @@
     <string name="PhotoHasSticker">Send Sticker Info in Photo</string>
     <string name="PhotoHasStickerInfo">When using Stickers on Photo</string>
     <string name="PinDialogsOrder">Pin Dialogs Order</string>
+    <string name="HideSensitiveData">Hide Sensitive Data</string>
 </resources>

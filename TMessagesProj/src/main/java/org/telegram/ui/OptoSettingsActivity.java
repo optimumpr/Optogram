@@ -45,6 +45,8 @@ public class OptoSettingsActivity extends BaseFragment {
 
     private int emptyRow;
 
+    private int disableGlobalSearch;
+
     @Override
     public boolean onFragmentCreate() {
         super.onFragmentCreate();
@@ -53,8 +55,21 @@ public class OptoSettingsActivity extends BaseFragment {
 
         sectionRow1 = rowCount++;
         inappCameraRow = rowCount++;
+        disableGlobalSearch = rowCount++;
 
         return true;
+    }
+
+    public boolean toggleGlobalMainSetting(String option, View view, boolean byDefault) {
+        SharedPreferences preferences = MessagesController.getGlobalMainSettings();
+        boolean optionBool = preferences.getBoolean(option, byDefault);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(option, !optionBool);
+        editor.commit();
+        if (view instanceof TextCheckCell) {
+            ((TextCheckCell) view).setChecked(!optionBool);
+        }
+        return !optionBool;
     }
 
     @Override
@@ -95,10 +110,13 @@ public class OptoSettingsActivity extends BaseFragment {
         frameLayout.addView(listView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.MATCH_PARENT, Gravity.TOP | Gravity.LEFT));
         listView.setOnItemClickListener((view, position, x, y) -> {
             if (position == inappCameraRow) {
+                SharedPreferences preferences = MessagesController.getGlobalMainSettings();
                 SharedConfig.toggleInappCamera();
                 if (view instanceof TextCheckCell) {
                     ((TextCheckCell) view).setChecked(SharedConfig.inappCamera);
                 }
+            } else if (position == disableGlobalSearch) {
+                toggleGlobalMainSetting("disableGlobalSearch", view, false);
             }
         });
 
@@ -140,6 +158,9 @@ public class OptoSettingsActivity extends BaseFragment {
                         String t = LocaleController.getString("InAppCamera", R.string.InAppCamera);
                         String info = LocaleController.getString("InAppCameraInfo", R.string.InAppCameraInfo);
                         textCell.setTextAndValueAndCheck(t, info, preferences.getBoolean("inappCamera", true), false, false);
+                    } else if (position == disableGlobalSearch) {
+                        String t = LocaleController.getString("DisableGlobalSearch", R.string.DisableGlobalSearch);
+                        textCell.setTextAndCheck(t, preferences.getBoolean("disableGlobalSearch", false), false);
                     }
                     break;
                 }
@@ -157,7 +178,8 @@ public class OptoSettingsActivity extends BaseFragment {
         public boolean isEnabled(RecyclerView.ViewHolder holder) {
             int position = holder.getAdapterPosition();
             boolean fork = false
-                        || position == inappCameraRow;
+                        || position == inappCameraRow
+                        || position == disableGlobalSearch;
             return fork;
         }
 
@@ -200,7 +222,8 @@ public class OptoSettingsActivity extends BaseFragment {
             } else if (0 == 1) {
                 return 2;
             } else if (false
-                || position == inappCameraRow) {
+                || position == inappCameraRow
+                || position == disableGlobalSearch) {
                 return 3;
             } else if (position == sectionRow1) {
                 return 4;
