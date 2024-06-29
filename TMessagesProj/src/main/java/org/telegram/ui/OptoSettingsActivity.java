@@ -40,12 +40,11 @@ public class OptoSettingsActivity extends BaseFragment {
 
     private int rowCount;
     private int sectionRow1;
-
     private int inappCameraRow;
-
     private int emptyRow;
-
     private int disableGlobalSearch;
+    private int disableParametersFromBotLinks;
+    private int lockPremium;
 
     @Override
     public boolean onFragmentCreate() {
@@ -56,6 +55,8 @@ public class OptoSettingsActivity extends BaseFragment {
         sectionRow1 = rowCount++;
         inappCameraRow = rowCount++;
         disableGlobalSearch = rowCount++;
+        disableParametersFromBotLinks = rowCount++;
+        lockPremium = rowCount++;
 
         return true;
     }
@@ -117,6 +118,10 @@ public class OptoSettingsActivity extends BaseFragment {
                 }
             } else if (position == disableGlobalSearch) {
                 toggleGlobalMainSetting("disableGlobalSearch", view, false);
+            } else if (position == lockPremium) {
+                toggleGlobalMainSetting("lockPremium", view, false);
+            } else if (position == disableParametersFromBotLinks) {
+                toggleGlobalMainSetting("disableParametersFromBotLinks", view, false);
             }
         });
 
@@ -161,6 +166,13 @@ public class OptoSettingsActivity extends BaseFragment {
                     } else if (position == disableGlobalSearch) {
                         String t = LocaleController.getString("DisableGlobalSearch", R.string.DisableGlobalSearch);
                         textCell.setTextAndCheck(t, preferences.getBoolean("disableGlobalSearch", false), false);
+                    } else if (position == lockPremium) {
+                        String t = LocaleController.getString("LockPremium", R.string.LockPremium);
+                        String info = LocaleController.getString("SquareAvatarsInfo", R.string.SquareAvatarsInfo);
+                        textCell.setTextAndValueAndCheck(t, info, preferences.getBoolean("lockPremium", false), true, false);
+                    } else if (position == disableParametersFromBotLinks) {
+                        String t = LocaleController.getString("DisableParametersFromBotLinks", R.string.DisableParametersFromBotLinks);
+                        textCell.setTextAndCheck(t, preferences.getBoolean("disableParametersFromBotLinks", false), false);
                     }
                     break;
                 }
@@ -179,6 +191,8 @@ public class OptoSettingsActivity extends BaseFragment {
             int position = holder.getAdapterPosition();
             boolean fork = false
                         || position == inappCameraRow
+                        || position == lockPremium
+                        || position == disableParametersFromBotLinks
                         || position == disableGlobalSearch;
             return fork;
         }
@@ -223,6 +237,8 @@ public class OptoSettingsActivity extends BaseFragment {
                 return 2;
             } else if (false
                 || position == inappCameraRow
+                || position == lockPremium
+                || position == disableParametersFromBotLinks
                 || position == disableGlobalSearch) {
                 return 3;
             } else if (position == sectionRow1) {
