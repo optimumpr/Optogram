@@ -74,7 +74,9 @@ import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
@@ -97,6 +99,7 @@ import org.telegram.ui.Cells.PhotoAttachPermissionCell;
 import org.telegram.ui.Cells.PhotoAttachPhotoCell;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.OptoSettingsActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.recorder.AlbumButton;
@@ -944,7 +947,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                     }
                 }, hasSpoiler ? 250 : 0);
             } else {
-                if (SharedConfig.inappCamera) {
+                if (SharedConfig.inappCamera && MessagesController.getGlobalMainSettings().getBoolean("disableInstantCamera", false)) {
                     openCamera(true);
                 } else {
                     if (parentAlert.delegate != null) {
@@ -2215,7 +2218,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         if (fragment == null || fragment.getParentActivity() == null) {
             return;
         }
-        if (!SharedConfig.inappCamera) {
+        if (!SharedConfig.inappCamera || !MessagesController.getGlobalMainSettings().getBoolean("disableInstantCamera", false)) {
             deviceHasGoodCamera = false;
         } else {
             if (Build.VERSION.SDK_INT >= 23) {
@@ -2489,7 +2492,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                                         for (int a = 0; a < count; a++) {
                                             View child = gridView.getChildAt(a);
                                             if (child instanceof PhotoAttachCameraCell) {
-                                                child.setVisibility(View.INVISIBLE);
+                                                if (cameraView != null) child.setVisibility(View.INVISIBLE);
                                                 break;
                                             }
                                         }
@@ -2548,7 +2551,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             cameraView.setEnabled(mediaEnabled);
             cameraIcon.setAlpha(mediaEnabled ? 1.0f : 0.2f);
             cameraIcon.setEnabled(mediaEnabled);
-            if (isHidden) {
+            if (isHidden || !MessagesController.getGlobalMainSettings().getBoolean("disableInstantCamera", false)) {
                 cameraView.setVisibility(GONE);
                 cameraIcon.setVisibility(GONE);
             }
@@ -2572,7 +2575,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     public void hideCamera(boolean async) {
-        if (!deviceHasGoodCamera || cameraView == null) {
+        if (!deviceHasGoodCamera || cameraView == null || !MessagesController.getGlobalMainSettings().getBoolean("disableInstantCamera", false)) {
             return;
         }
         saveLastCameraBitmap();

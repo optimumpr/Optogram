@@ -345,7 +345,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         switchCameraButton.setContentDescription(LocaleController.getString("AccDescrSwitchCamera", R.string.AccDescrSwitchCamera));
         addView(switchCameraButton, LayoutHelper.createFrame(62, 62, Gravity.LEFT | Gravity.BOTTOM, 8, 0, 0, 0));
         switchCameraButton.setOnClickListener(v -> {
-            if (!cameraReady || !isCameraSessionInitiated() || cameraThread == null) {
+            if (!cameraReady || !isCameraSessionInitiated() || cameraThread == null || !MessagesController.getGlobalMainSettings().getBoolean("disableInstantCamera", false)) {
                 return;
             }
             if (!bothCameras) {

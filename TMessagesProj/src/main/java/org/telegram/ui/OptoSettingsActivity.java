@@ -45,6 +45,8 @@ public class OptoSettingsActivity extends BaseFragment {
     private int disableGlobalSearch;
     private int disableParametersFromBotLinks;
     private int lockPremium;
+    private int disableInstantCamera;
+
 
     @Override
     public boolean onFragmentCreate() {
@@ -57,6 +59,7 @@ public class OptoSettingsActivity extends BaseFragment {
         disableGlobalSearch = rowCount++;
         disableParametersFromBotLinks = rowCount++;
         lockPremium = rowCount++;
+        disableInstantCamera = rowCount++;
 
         return true;
     }
@@ -122,6 +125,8 @@ public class OptoSettingsActivity extends BaseFragment {
                 toggleGlobalMainSetting("lockPremium", view, false);
             } else if (position == disableParametersFromBotLinks) {
                 toggleGlobalMainSetting("disableParametersFromBotLinks", view, false);
+            } else if (position == disableInstantCamera) {
+                toggleGlobalMainSetting("disableInstantCamera", view, false);
             }
         });
 
@@ -173,6 +178,9 @@ public class OptoSettingsActivity extends BaseFragment {
                     } else if (position == disableParametersFromBotLinks) {
                         String t = LocaleController.getString("DisableParametersFromBotLinks", R.string.DisableParametersFromBotLinks);
                         textCell.setTextAndCheck(t, preferences.getBoolean("disableParametersFromBotLinks", false), false);
+                    } else if (position == disableInstantCamera) {
+                        String t = LocaleController.getString("DisableInstantCamera", R.string.DisableInstantCamera);
+                        textCell.setTextAndCheck(t, preferences.getBoolean("disableInstantCamera", false), false);
                     }
                     break;
                 }
@@ -193,6 +201,7 @@ public class OptoSettingsActivity extends BaseFragment {
                         || position == inappCameraRow
                         || position == lockPremium
                         || position == disableParametersFromBotLinks
+                        || position == disableInstantCamera
                         || position == disableGlobalSearch;
             return fork;
         }
@@ -239,6 +248,7 @@ public class OptoSettingsActivity extends BaseFragment {
                 || position == inappCameraRow
                 || position == lockPremium
                 || position == disableParametersFromBotLinks
+                || position == disableInstantCamera
                 || position == disableGlobalSearch) {
                 return 3;
             } else if (position == sectionRow1) {
