@@ -345,7 +345,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         switchCameraButton.setContentDescription(LocaleController.getString("AccDescrSwitchCamera", R.string.AccDescrSwitchCamera));
         addView(switchCameraButton, LayoutHelper.createFrame(62, 62, Gravity.LEFT | Gravity.BOTTOM, 8, 0, 0, 0));
         switchCameraButton.setOnClickListener(v -> {
-            if (!cameraReady || !isCameraSessionInitiated() || cameraThread == null || !MessagesController.getGlobalMainSettings().getBoolean("disableInstantCamera", false)) {
+            if (!cameraReady || !isCameraSessionInitiated() || cameraThread == null) {
                 return;
             }
             if (!bothCameras) {
@@ -1236,7 +1236,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
 
     private void createCamera(final int index, final SurfaceTexture surfaceTexture) {
         AndroidUtilities.runOnUIThread(() -> {
-            if (cameraThread == null) {
+            if (cameraThread == null || !MessagesController.getGlobalMainSettings().getBoolean("disableInstantCamera", false)) {
                 return;
             }
             if (BuildVars.LOGS_ENABLED) {

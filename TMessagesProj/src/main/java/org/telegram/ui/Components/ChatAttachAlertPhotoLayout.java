@@ -947,7 +947,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                     }
                 }, hasSpoiler ? 250 : 0);
             } else {
-                if (SharedConfig.inappCamera && MessagesController.getGlobalMainSettings().getBoolean("disableInstantCamera", false)) {
+                if (SharedConfig.inappCamera && !MessagesController.getGlobalMainSettings().getBoolean("disableInstantCamera", true)) {
                     openCamera(true);
                 } else {
                     if (parentAlert.delegate != null) {
@@ -2218,7 +2218,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         if (fragment == null || fragment.getParentActivity() == null) {
             return;
         }
-        if (!SharedConfig.inappCamera || !MessagesController.getGlobalMainSettings().getBoolean("disableInstantCamera", false)) {
+        if (!SharedConfig.inappCamera || MessagesController.getGlobalMainSettings().getBoolean("disableInstantCamera", true)) {
             deviceHasGoodCamera = false;
         } else {
             if (Build.VERSION.SDK_INT >= 23) {
@@ -2374,7 +2374,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     public void showCamera() {
-        if (parentAlert.paused || !mediaEnabled) {
+        if (parentAlert.paused || !mediaEnabled || !MessagesController.getGlobalMainSettings().getBoolean("disableInstantCamera", false)) {
             return;
         }
         if (cameraView == null) {
@@ -2458,7 +2458,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 public void onCameraInit() {
                     String current = cameraView.getCameraSession().getCurrentFlashMode();
                     String next = cameraView.getCameraSession().getNextFlashMode();
-                    if (current == null || next == null) return;
+                    if (current == null || next == null || !MessagesController.getGlobalMainSettings().getBoolean("disableInstantCamera", false)) return;
                     if (current.equals(next)) {
                         for (int a = 0; a < 2; a++) {
                             flashModeButton[a].setVisibility(View.INVISIBLE);
@@ -2492,7 +2492,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                                         for (int a = 0; a < count; a++) {
                                             View child = gridView.getChildAt(a);
                                             if (child instanceof PhotoAttachCameraCell) {
-                                                if (cameraView != null) child.setVisibility(View.INVISIBLE);
+                                                child.setVisibility(View.INVISIBLE);
                                                 break;
                                             }
                                         }
@@ -3708,7 +3708,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         if (cameraView != null) {
             cameraView.setVisibility(VISIBLE);
         }
-        if (cameraIcon != null) {
+        if (cameraIcon != null && MessagesController.getGlobalMainSettings().getBoolean("disableInstantCamera", false)) {
             cameraIcon.setVisibility(VISIBLE);
         }
         if (cameraView != null) {

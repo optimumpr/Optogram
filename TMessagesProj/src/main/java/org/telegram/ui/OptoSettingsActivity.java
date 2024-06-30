@@ -244,8 +244,7 @@ public class OptoSettingsActivity extends BaseFragment {
                 return 1;
             } else if (0 == 1) {
                 return 2;
-            } else if (false
-                || position == inappCameraRow
+            } else if (position == inappCameraRow
                 || position == lockPremium
                 || position == disableParametersFromBotLinks
                 || position == disableInstantCamera

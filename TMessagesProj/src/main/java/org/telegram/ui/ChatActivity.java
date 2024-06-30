@@ -9730,16 +9730,18 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     private void checkInstantCameraView() {
-        if (instantCameraView != null || getContext() == null) {
-            return;
-        }
-        instantCameraView = new InstantCameraView(getContext(), this, themeDelegate) {
-            @Override
-            protected void clipBlur(Canvas canvas) {
-                canvas.clipRect(0, 0, getWidth(), getHeight() - dp(1.5f));
+        if (org.telegram.messenger.MessagesController.getGlobalMainSettings().getBoolean("disableInstantCamera", false)) {
+            if (instantCameraView != null || getContext() == null) {
+                return;
             }
-        };
-        contentView.addView(instantCameraView, 21, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.MATCH_PARENT, Gravity.LEFT | Gravity.TOP));
+            instantCameraView = new InstantCameraView(getContext(), this, themeDelegate) {
+                @Override
+                protected void clipBlur(Canvas canvas) {
+                    canvas.clipRect(0, 0, getWidth(), getHeight() - dp(1.5f));
+                }
+            };
+            contentView.addView(instantCameraView, 21, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.MATCH_PARENT, Gravity.LEFT | Gravity.TOP));
+        }
     }
 
     private void dimBehindView(float value, boolean blur, boolean hidePagedownButtons) {
