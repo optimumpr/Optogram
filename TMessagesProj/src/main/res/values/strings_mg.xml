@@ -30,4 +30,5 @@
     <string name="PinDialogsOrder">Pin Dialogs Order</string>
     <string name="HideSensitiveData">Hide Sensitive Data</string>
     <string name="DisableInstantCamera">Disable Instant Camera</string>
+    <string name="AnimateEveryAvatar">Animate Every Avatar</string>
 </resources>

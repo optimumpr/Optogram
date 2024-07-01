@@ -136,7 +136,7 @@ public class ImageLocation {
         }
         if (type == TYPE_VIDEO_BIG || type == TYPE_VIDEO_SMALL) {
             int currentAccount = UserConfig.selectedAccount;
-            if (MessagesController.getInstance(currentAccount).isPremiumUser(user) && user.photo.has_video) {
+            if (user.photo.has_video && MessagesController.getGlobalMainSettings().getBoolean("animateEveryAvatar", true)) {
                 final TLRPC.UserFull userFull = MessagesController.getInstance(currentAccount).getUserFull(user.id);
                 if (userFull != null && userFull.profile_photo != null && userFull.profile_photo.video_sizes != null && !userFull.profile_photo.video_sizes.isEmpty()) {
                     if (type == TYPE_VIDEO_BIG) {

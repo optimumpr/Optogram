@@ -46,6 +46,7 @@ public class OptoSettingsActivity extends BaseFragment {
     private int disableParametersFromBotLinks;
     private int lockPremium;
     private int disableInstantCamera;
+    private int animateEveryAvatar;
 
 
     @Override
@@ -60,6 +61,7 @@ public class OptoSettingsActivity extends BaseFragment {
         disableParametersFromBotLinks = rowCount++;
         lockPremium = rowCount++;
         disableInstantCamera = rowCount++;
+        animateEveryAvatar = rowCount++;
 
         return true;
     }
@@ -127,6 +129,8 @@ public class OptoSettingsActivity extends BaseFragment {
                 toggleGlobalMainSetting("disableParametersFromBotLinks", view, false);
             } else if (position == disableInstantCamera) {
                 toggleGlobalMainSetting("disableInstantCamera", view, false);
+            } else if (position == animateEveryAvatar) {
+                toggleGlobalMainSetting("animateEveryAvatar", view, false);
             }
         });
 
@@ -181,6 +185,9 @@ public class OptoSettingsActivity extends BaseFragment {
                     } else if (position == disableInstantCamera) {
                         String t = LocaleController.getString("DisableInstantCamera", R.string.DisableInstantCamera);
                         textCell.setTextAndCheck(t, preferences.getBoolean("disableInstantCamera", false), false);
+                    } else if (position == animateEveryAvatar) {
+                        String t = LocaleController.getString("AnimateEveryAvatar", R.string.AnimateEveryAvatar);
+                        textCell.setTextAndCheck(t, preferences.getBoolean("animateEveryAvatar", false), false);
                     }
                     break;
                 }
@@ -202,6 +209,7 @@ public class OptoSettingsActivity extends BaseFragment {
                         || position == lockPremium
                         || position == disableParametersFromBotLinks
                         || position == disableInstantCamera
+                        || position == animateEveryAvatar
                         || position == disableGlobalSearch;
             return fork;
         }
@@ -248,6 +256,7 @@ public class OptoSettingsActivity extends BaseFragment {
                 || position == lockPremium
                 || position == disableParametersFromBotLinks
                 || position == disableInstantCamera
+                || position == animateEveryAvatar
                 || position == disableGlobalSearch) {
                 return 3;
             } else if (position == sectionRow1) {
