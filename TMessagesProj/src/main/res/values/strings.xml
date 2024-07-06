@@ -9083,4 +9083,5 @@
     <string name="DisableParametersFromBotLinks">Disable parameters from bot links</string>
     <string name="LockPremium">Lock premium features</string>
     <string name="MutualContact">Mutual contact</string>
+    <string name="DisableAds">Disable ads</string>    
 </resources>

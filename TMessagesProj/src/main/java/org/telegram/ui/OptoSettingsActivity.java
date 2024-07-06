@@ -47,6 +47,7 @@ public class OptoSettingsActivity extends BaseFragment {
     private int lockPremium;
     private int disableInstantCamera;
     private int animateEveryAvatar;
+    private int disableAds;
 
 
     @Override
@@ -62,6 +63,7 @@ public class OptoSettingsActivity extends BaseFragment {
         lockPremium = rowCount++;
         disableInstantCamera = rowCount++;
         animateEveryAvatar = rowCount++;
+        disableAds = rowCount++;
 
         return true;
     }
@@ -131,6 +133,8 @@ public class OptoSettingsActivity extends BaseFragment {
                 toggleGlobalMainSetting("disableInstantCamera", view, false);
             } else if (position == animateEveryAvatar) {
                 toggleGlobalMainSetting("animateEveryAvatar", view, false);
+            } else if (position == disableAds) {
+                toggleGlobalMainSetting("disableAds", view, false);
             }
         });
 
@@ -188,7 +192,11 @@ public class OptoSettingsActivity extends BaseFragment {
                     } else if (position == animateEveryAvatar) {
                         String t = LocaleController.getString("AnimateEveryAvatar", R.string.AnimateEveryAvatar);
                         textCell.setTextAndCheck(t, preferences.getBoolean("animateEveryAvatar", false), false);
+                    } else if (position == disableAds) {
+                        String t = LocaleController.getString("DisableAds", R.string.DisableAds);
+                        textCell.setTextAndCheck(t, preferences.getBoolean("disableAds", false), false);
                     }
+
                     break;
                 }
                 case 4: {
@@ -210,6 +218,7 @@ public class OptoSettingsActivity extends BaseFragment {
                         || position == disableParametersFromBotLinks
                         || position == disableInstantCamera
                         || position == animateEveryAvatar
+                        || position == disableAds
                         || position == disableGlobalSearch;
             return fork;
         }
@@ -257,6 +266,7 @@ public class OptoSettingsActivity extends BaseFragment {
                 || position == disableParametersFromBotLinks
                 || position == disableInstantCamera
                 || position == animateEveryAvatar
+                || position == disableAds
                 || position == disableGlobalSearch) {
                 return 3;
             } else if (position == sectionRow1) {

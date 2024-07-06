@@ -243,6 +243,7 @@ import org.telegram.ui.Components.voip.VoIPHelper;
 import org.telegram.ui.Delegates.ChatActivityMemberRequestsDelegate;
 import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stars.StarsIntroActivity;
+import org.telegram.ui.OptoSettingsActivity;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
 import org.telegram.ui.Stories.StoriesUtilities;
 import org.telegram.ui.Stories.recorder.HintView2;
@@ -22543,11 +22544,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private boolean sponsoredMessagesAdded;
     private Pattern sponsoredUrlPattern;
     private void addSponsoredMessages(boolean animated) {
-        if (sponsoredMessagesAdded || chatMode != 0 || !ChatObject.isChannel(currentChat) || !forwardEndReached[0] || getUserConfig().isPremium() && getMessagesController().isSponsoredDisabled()) {
+        if (sponsoredMessagesAdded || chatMode != 0 || !ChatObject.isChannel(currentChat) || org.telegram.messenger.MessagesController.getGlobalMainSettings().getBoolean("disableAds", true) || !forwardEndReached[0] || getUserConfig().isPremium() && getMessagesController().isSponsoredDisabled()) {
             return;
         }
         MessagesController.SponsoredMessagesInfo res = getMessagesController().getSponsoredMessages(dialog_id);
-        if (res == null || res.messages == null) {
+        if (res == null || res.messages == null || org.telegram.messenger.MessagesController.getGlobalMainSettings().getBoolean("disableAds", true)) {
             return;
         }
         for (int i = 0; i < res.messages.size(); i++) {
