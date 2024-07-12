@@ -1,11 +1,11 @@
-Optogram, a DeGoogled Telegram client for Android with Unified-Push and Black Interface
+Optogram, a DeGoogled Telegram client for Android with Unified-Push, Extra Privacy Features and Black Interface
 =======================================================================================
 ![Picture](images/icon_launcher.png)
 
 The application is for people who choose not to use Google services, including the Firebase Push, which is known 
 to expose metadata to various third parties. Without FCM/GCM push, most users must enable 'keep alive' and 
 'background connection' features, which cause excessive battery consumption. Not so with Optogram, which uses
-Unified Push, which is enabled automatically when using a 'companion' application Ntfy, which is a small application that
+Unified Push, which is enabled automatically when using a [companion](https://github.com/optimumpr/ntfy-android/) application Ntfy that
 uses publicly available (or your own) push servers. 
 
 Credits: This application won't be possible without F-Droid's TelegramFOSS, Mercurygram and Ntfy application developments.
