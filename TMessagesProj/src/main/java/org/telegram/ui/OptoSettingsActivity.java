@@ -212,15 +212,14 @@ public class OptoSettingsActivity extends BaseFragment {
         @Override
         public boolean isEnabled(RecyclerView.ViewHolder holder) {
             int position = holder.getAdapterPosition();
-            boolean fork = false
-                        || position == inappCameraRow
+            boolean opto = position == inappCameraRow
                         || position == lockPremium
                         || position == disableParametersFromBotLinks
                         || position == disableInstantCamera
                         || position == animateEveryAvatar
                         || position == disableAds
                         || position == disableGlobalSearch;
-            return fork;
+            return opto;
         }
 
         @Override
