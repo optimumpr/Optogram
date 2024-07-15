@@ -1207,7 +1207,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         emojiView = new EmojiView(null, true, false, false, getContext(), true, null, null, true, resourcesProvider, false);
         emojiView.emojiCacheType = AnimatedEmojiDrawable.CACHE_TYPE_ALERT_PREVIEW;
         emojiView.fixBottomTabContainerTranslation = false;
-        emojiView.allowEmojisForNonPremium(false);
+        emojiView.allowEmojisForNonPremium(true);
         emojiView.setVisibility(GONE);
         if (AndroidUtilities.isTablet()) {
             emojiView.setForseMultiwindowLayout(true);

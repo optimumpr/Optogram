@@ -582,7 +582,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
 
         @Override
         public Boolean canSetAsStatus(TLRPC.Document document) {
-            if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
+            if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium() || allowEmojisForNonPremium) {
                 return null;
             }
             TLRPC.User user = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser();
@@ -596,7 +596,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         @Override
         public boolean needSend(int contentType) {
             if (contentType == ContentPreviewViewer.CONTENT_TYPE_EMOJI) {
-                return fragment instanceof ChatActivity && ((ChatActivity) fragment).canSendMessage() && (UserConfig.getInstance(UserConfig.selectedAccount).isPremium() || ((ChatActivity) fragment).getCurrentUser() != null && UserObject.isUserSelf(((ChatActivity) fragment).getCurrentUser()));
+                return fragment instanceof ChatActivity && ((ChatActivity) fragment).canSendMessage() || ((ChatActivity) fragment).getCurrentUser() != null && UserObject.isUserSelf(((ChatActivity) fragment).getCurrentUser());
             }
             return true;
         }
@@ -870,7 +870,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             });
             box.addView(clear, LayoutHelper.createFrame(36, 36, Gravity.RIGHT | Gravity.TOP));
 
-            if (type != 1 || allowAnimatedEmoji && UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
+            if (type != 1 || allowAnimatedEmoji) {
                 categoriesListView = new StickerCategoriesListView(context, null, type == 0 ? StickerCategoriesListView.CategoriesType.STICKERS : StickerCategoriesListView.CategoriesType.DEFAULT, resourcesProvider) {
                     @Override
                     public void selectCategory(int categoryIndex) {
@@ -1757,7 +1757,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
 
             @Override
             protected boolean doIncludeFeatured() {
-                return !(featuredEmojiSets.size() > 0 && featuredEmojiSets.get(0).set != null && MessagesController.getEmojiSettings(currentAccount).getLong("emoji_featured_hidden", 0) != featuredEmojiSets.get(0).set.id && UserConfig.getInstance(UserConfig.selectedAccount).isPremium());
+                return !(featuredEmojiSets.size() > 0 && featuredEmojiSets.get(0).set != null && MessagesController.getEmojiSettings(currentAccount).getLong("emoji_featured_hidden", 0) != featuredEmojiSets.get(0).set.id);
             }
 
             @Override
@@ -2195,7 +2195,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                     return;
                 }
                 StickerEmojiCell cell = (StickerEmojiCell) view;
-                if (cell.getSticker() != null && MessageObject.isPremiumSticker(cell.getSticker()) && !AccountInstance.getInstance(currentAccount).getUserConfig().isPremium()) {
+                if (cell.getSticker() != null && MessageObject.isPremiumSticker(cell.getSticker()) && !allowEmojisForNonPremium && !AccountInstance.getInstance(currentAccount).getUserConfig().isPremium()) {
                     ContentPreviewViewer.getInstance().showMenuFor(cell);
                     return;
                 }
@@ -5818,7 +5818,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             int previousCount2 = favouriteStickers.size();
             recentStickers = MediaDataController.getInstance(currentAccount).getRecentStickers(MediaDataController.TYPE_IMAGE, true);
             favouriteStickers = MediaDataController.getInstance(currentAccount).getRecentStickers(MediaDataController.TYPE_FAVE);
-            if (UserConfig.getInstance(currentAccount).isPremium()) {
+            if (UserConfig.getInstance(currentAccount).isPremium() || allowEmojisForNonPremium) {
                 premiumStickers = MediaDataController.getInstance(currentAccount).getRecentStickers(MediaDataController.TYPE_PREMIUM_STICKERS);
             } else {
                 premiumStickers = new ArrayList<>();
@@ -7133,7 +7133,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                 }
             }
 
-            if (!isPremium) {
+            if (!isPremium || !allowEmojisForNonPremium) {
                 for (int i = 0; i < installedEmojipacks.size(); ++i) {
                     TLRPC.TL_messages_stickerSet set = installedEmojipacks.get(i);
                     if (set != null && !MessageObject.isPremiumEmojiPack(set)) {
@@ -7152,7 +7152,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             }
             for (int i = 0; i < installedEmojipacks.size(); ++i) {
                 TLRPC.TL_messages_stickerSet set = installedEmojipacks.get(i);
-                if (isPremium) {
+                if (isPremium || allowEmojisForNonPremium) {
                     EmojiPack pack = new EmojiPack();
                     pack.index = index++;
                     pack.set = set.set;
