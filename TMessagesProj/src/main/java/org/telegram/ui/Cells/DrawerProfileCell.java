@@ -170,6 +170,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         nameTextView.setEllipsizeByGradient(true);
         nameTextView.setRightDrawableOutside(true);
         addView(nameTextView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT, Gravity.LEFT | Gravity.BOTTOM, 16, 0, 52, 28));
+
         phoneTextView = new TextView(context);
         phoneTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 13);
         phoneTextView.setLines(1);

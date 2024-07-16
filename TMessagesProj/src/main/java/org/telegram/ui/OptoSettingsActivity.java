@@ -198,10 +198,10 @@ public class OptoSettingsActivity extends BaseFragment {
                         textCell.setTextAndCheck(t, preferences.getBoolean("animateEveryAvatar", false), false);
                     } else if (position == disableAds) {
                         String t = LocaleController.getString("DisableAds", R.string.DisableAds);
-                        String info = LocaleController.getString("SquareAvatarsInfo", R.string.SquareAvatarsInfo);
                         textCell.setTextAndCheck(t, preferences.getBoolean("disableAds", false), false);
                     } else if (position == hidePhoneNumber) {
                         String t = LocaleController.getString("HidePhoneNumber", R.string.HidePhoneNumber);
+                        String info = LocaleController.getString("SquareAvatarsInfo", R.string.SquareAvatarsInfo);
                         textCell.setTextAndCheck(t, preferences.getBoolean("hidePhoneNumber", false), false);
                     }
 
