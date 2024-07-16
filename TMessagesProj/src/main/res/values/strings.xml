@@ -9082,10 +9082,11 @@
     <string name="StarsConfirmPurchaseMediaTwo2_other">Do you want to unlock %2$s and %3$s in **%4$s** for **%1$d stars**?</string>
     <string name="AttachPaidMedia">⭐️ %s</string>
     <string name="GoToFirstMessage">Go to First Message</string>
-    <string name="CopyWithoutProtocol">Copy without protocol</string>
+    <string name="CopyWithoutProtocol">Copy Without Protocol</string>
     <string name="DisableGlobalSearch">Disable Global Search</string>
-    <string name="DisableParametersFromBotLinks">Disable parameters from bot links</string>
-    <string name="LockPremium">Lock premium features</string>
-    <string name="MutualContact">Mutual contact</string>
-    <string name="DisableAds">Disable ads</string>    
+    <string name="DisableParametersFromBotLinks">Disable Parameters From Bot Links</string>
+    <string name="LockPremium">Lock Premium Features</string>
+    <string name="MutualContact">Mutual Contact</string>
+    <string name="DisableAds">Disable Ads</string>
+    <string name="HidePhoneNumber">Hide Your Phone Number in Drawer</string>
 </resources>

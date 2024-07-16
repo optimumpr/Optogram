@@ -170,15 +170,15 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         nameTextView.setEllipsizeByGradient(true);
         nameTextView.setRightDrawableOutside(true);
         addView(nameTextView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT, Gravity.LEFT | Gravity.BOTTOM, 16, 0, 52, 28));
-
         phoneTextView = new TextView(context);
         phoneTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 13);
         phoneTextView.setLines(1);
         phoneTextView.setMaxLines(1);
         phoneTextView.setSingleLine(true);
         phoneTextView.setGravity(Gravity.LEFT);
-        addView(phoneTextView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT, Gravity.LEFT | Gravity.BOTTOM, 16, 0, 52, 9));
-
+        if (!org.telegram.messenger.MessagesController.getGlobalMainSettings().getBoolean("hidePhoneNumber", false)) {
+            addView(phoneTextView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT, Gravity.LEFT | Gravity.BOTTOM, 16, 0, 52, 9));
+        }
         arrowView = new ImageView(context);
         arrowView.setScaleType(ImageView.ScaleType.CENTER);
         arrowView.setImageResource(R.drawable.msg_expand);
