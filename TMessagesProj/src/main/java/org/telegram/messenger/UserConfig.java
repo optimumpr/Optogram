@@ -563,10 +563,11 @@ public class UserConfig extends BaseController {
     }
 
     public boolean isPremium() {
+        SharedPreferences preferences = MessagesController.getGlobalMainSettings();
         if (currentUser == null) {
-            return false;
+            return false; //preferences.contains("localPremium")
         }
-        return currentUser.premium;
+        return org.telegram.messenger.MessagesController.getGlobalMainSettings().getBoolean("localPremium", false) || currentUser.premium;
     }
 
     public Long getEmojiStatus() {

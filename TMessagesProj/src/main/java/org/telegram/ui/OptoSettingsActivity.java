@@ -49,6 +49,7 @@ public class OptoSettingsActivity extends BaseFragment {
     private int animateEveryAvatar;
     private int disableAds;
     private int hidePhoneNumber;
+    private int localPremium;
 
 
     @Override
@@ -66,6 +67,7 @@ public class OptoSettingsActivity extends BaseFragment {
         animateEveryAvatar = rowCount++;
         disableAds = rowCount++;
         hidePhoneNumber = rowCount++;
+        localPremium = rowCount++;
 
         return true;
     }
@@ -139,6 +141,8 @@ public class OptoSettingsActivity extends BaseFragment {
                 toggleGlobalMainSetting("disableAds", view, false);
             } else if (position == hidePhoneNumber) {
                 toggleGlobalMainSetting("hidePhoneNumber", view, false);
+            } else if (position == localPremium) {
+                toggleGlobalMainSetting("localPremium", view, false);
             }
         });
 
@@ -203,6 +207,9 @@ public class OptoSettingsActivity extends BaseFragment {
                         String t = LocaleController.getString("HidePhoneNumber", R.string.HidePhoneNumber);
                         String info = LocaleController.getString("SquareAvatarsInfo", R.string.SquareAvatarsInfo);
                         textCell.setTextAndCheck(t, preferences.getBoolean("hidePhoneNumber", false), false);
+                    } else if (position == localPremium) {
+                        String t = LocaleController.getString("LocalPremium", R.string.LocalPremium);
+                        textCell.setTextAndCheck(t, preferences.getBoolean("localPremium", false), false);
                     }
 
                     break;
@@ -227,6 +234,7 @@ public class OptoSettingsActivity extends BaseFragment {
                         || position == animateEveryAvatar
                         || position == disableAds
                         || position == hidePhoneNumber
+                        || position == localPremium
                         || position == disableGlobalSearch;
             return opto;
         }
@@ -276,6 +284,7 @@ public class OptoSettingsActivity extends BaseFragment {
                 || position == animateEveryAvatar
                 || position == disableAds
                 || position == hidePhoneNumber
+                || position == localPremium
                 || position == disableGlobalSearch) {
                 return 3;
             } else if (position == sectionRow1) {
