@@ -9090,4 +9090,5 @@
     <string name="DisableAds">Disable Ads</string>
     <string name="HidePhoneNumber">Hide Your Phone Number in Drawer</string>
     <string name="LocalPremium">Telegram Local Premium</string>
+    <string name="AutoLockImmediately">Immediately</string>
 </resources>
