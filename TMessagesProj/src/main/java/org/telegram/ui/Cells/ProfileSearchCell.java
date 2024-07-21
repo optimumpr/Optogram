@@ -397,7 +397,9 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
             nameString = nameString2.replace('\n', ' ');
         }
         if (nameString.length() == 0) {
-            if (user != null && user.phone != null && user.phone.length() != 0) {
+            if (org.telegram.messenger.MessagesController.getGlobalMainSettings().getBoolean("hidePhoneNumber", false)) {
+                nameString = LocaleController.getString("MobileHidden", R.string.MobileHidden);
+            } else if (user != null && user.phone != null && user.phone.length() != 0) {
                 nameString = PhoneFormat.getInstance().format("+" + user.phone);
             } else {
                 nameString = LocaleController.getString("HiddenName", R.string.HiddenName);
