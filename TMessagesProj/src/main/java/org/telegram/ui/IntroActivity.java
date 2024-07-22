@@ -772,7 +772,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
             loadTexture(v -> {
                 Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
                 if (BuildVars.isBetaApp()) {
-                    paint.setColor(0xFF747F9F);
+                    paint.setColor(0xFF000000);
                 } else {
                     paint.setColor(0xFF000000); // It's logo color, it should not be colored by the theme
                 }

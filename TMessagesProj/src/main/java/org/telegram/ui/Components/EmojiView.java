@@ -582,7 +582,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
 
         @Override
         public Boolean canSetAsStatus(TLRPC.Document document) {
-            if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium() || allowEmojisForNonPremium) {
+            if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium() || !allowEmojisForNonPremium) {
                 return null;
             }
             TLRPC.User user = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser();
