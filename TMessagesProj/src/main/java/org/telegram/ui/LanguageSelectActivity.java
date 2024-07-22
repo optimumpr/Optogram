@@ -202,10 +202,6 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
                         NotificationCenter.getInstance(currentAccount).postNotificationName(NotificationCenter.updateSearchSettings);
                     } else if (position == 2) {
                         boolean value = !getChatValue();
-                        if (value && !getUserConfig().isPremium()) {
-                            showDialog(new PremiumFeatureBottomSheet(LanguageSelectActivity.this, PremiumPreviewFragment.PREMIUM_FEATURE_TRANSLATIONS, false));
-                            return;
-                        }
                         getMessagesController().getTranslateController().setChatTranslateEnabled(value);
                         NotificationCenter.getInstance(currentAccount).postNotificationName(NotificationCenter.updateSearchSettings);
                         ((TextCheckCell) view).setChecked(value);
@@ -720,9 +716,6 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             } else {
                 if (i-- == 0) return VIEW_TYPE_HEADER;
                 if (i-- == 0) return VIEW_TYPE_SWITCH;
-                if (!getMessagesController().premiumFeaturesBlocked()) {
-                    if (i-- == 0) return VIEW_TYPE_SWITCH;
-                }
                 if (getChatValue() || getContextValue()) {
                     if (i-- == 0) return VIEW_TYPE_SETTINGS;
                 }
