@@ -273,7 +273,7 @@ public class UserConfig extends BaseController {
     private void checkPremiumSelf(TLRPC.User oldUser, TLRPC.User newUser) {
         if (oldUser == null || (newUser != null && oldUser.premium != newUser.premium)) {
             AndroidUtilities.runOnUIThread(() -> {
-                getMessagesController().updatePremium(newUser.premium);
+                getMessagesController().updatePremium(newUser.premium || org.telegram.messenger.MessagesController.getGlobalMainSettings().getBoolean("localPremium", false));
                 NotificationCenter.getInstance(currentAccount).postNotificationName(NotificationCenter.currentUserPremiumStatusChanged);
                 NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.premiumStatusChangedGlobal);
 
