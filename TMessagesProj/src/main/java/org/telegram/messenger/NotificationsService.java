@@ -19,8 +19,6 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
-import android.util.Log;
-
 import androidx.core.app.NotificationCompat;
 
 public class NotificationsService extends Service {
@@ -43,11 +41,7 @@ public class NotificationsService extends Service {
                     .setOngoing(true)
                     .setSmallIcon(R.drawable.notification)
                     .setContentText("Push service: tap to learn more").build();
-            try {
-                startForeground(9999, notification);
-            } catch (Throwable e) {
-                Log.d("TFOSS", "Failed to start push service");
-            }
+            startForeground(9999,notification);
         }
     }
 
